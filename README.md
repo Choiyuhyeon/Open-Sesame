@@ -28,3 +28,8 @@
 /post/:id/answer
 
 피드에 답변하는 관리자 페이지
+
+# React + Vite
+
+- 이번 프로젝트는 소규모라 App에서 직접 라우팅 관리하는 구조 <br>
+- 저장 시 자동 포맷되도록 ESLint + Prettier 통합 설정 

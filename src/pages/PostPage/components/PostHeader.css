@@ -1,3 +1,4 @@
+/* 기본(모바일) */
 #postpage-header {
   position: relative;
   width: 100%;
@@ -79,4 +80,35 @@
 .post-facebookVector {
   width: 18px;
   height: 18px;
+}
+
+/* 태블릿 + PC */
+@media (min-width: 768px) {
+  #postpage-header {
+    height: 369px;
+  }
+  .post-header {
+    height: 234px;
+  }
+  .post-logo {
+    width: 170px;
+    height: 67px;
+    left: calc(50% - 170px / 2);
+    top: 50px;
+  }
+  .post-profile {
+    width: 136px;
+    height: 136px;
+    left: calc(50% - 136px / 2);
+    top: 129px;
+  }
+  .post-name {
+    left: calc(50% - 166px / 2);
+    top: 277px;
+    font-size: 24px;
+  }
+  .post-icons {
+    left: calc(50% - 144px / 2);
+    top: 329px;
+  }
 }

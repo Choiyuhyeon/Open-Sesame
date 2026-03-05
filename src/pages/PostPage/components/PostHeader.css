@@ -1,0 +1,82 @@
+#postpage-header {
+  position: relative;
+  width: 100%;
+  height: 299px;
+}
+
+.post-header {
+  position: relative;
+  width: 100%;
+  height: 177px;
+}
+
+.post-logo {
+  position: absolute;
+  width: 124px;
+  height: 49px;
+  left: calc(50% - 124px / 2);
+  top: 50px;
+}
+
+.post-profile {
+  position: absolute;
+  width: 104px;
+  height: 104px;
+  left: calc(50% - 104px / 2 + 0.5px);
+  top: 101px;
+}
+
+.post-name {
+  position: absolute;
+  left: calc(50% - 125px / 2);
+  top: 217px;
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  color: #000000;
+}
+
+/* 버튼 아이콘 묶음 */
+.post-icons {
+  position: absolute;
+  display: flex;
+  gap: 12px;
+  width: 144px;
+  height: 40px;
+  left: calc(50% - 144px / 2 + 0.5px);
+  top: 259px;
+}
+
+/* 버튼 공통 */
+.post-linkBtn,
+.post-kakaoBtn,
+.post-facebookBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 각 버튼 배경색 */
+.post-linkBtn {
+  background: #542f1a;
+}
+
+.post-kakaoBtn {
+  background: #f9e000;
+}
+
+.post-facebookBtn {
+  background: #1877f2;
+}
+
+/* 버튼 속 벡터 크기 */
+.post-linkVector,
+.post-kakaoVector,
+.post-facebookVector {
+  width: 18px;
+  height: 18px;
+}

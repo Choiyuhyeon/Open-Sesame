@@ -1,5 +1,11 @@
+import PostHeader from './components/PostHeader';
+
 function PostPage() {
-  return <div>Post Page</div>;
+  return (
+    <>
+      <PostHeader />
+    </>
+  );
 }
 
 export default PostPage;

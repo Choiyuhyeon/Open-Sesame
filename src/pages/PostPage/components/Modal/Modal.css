@@ -50,5 +50,10 @@
   width: 100%;
   border-radius: 8px;
   color: #ffffff;
+  background-color: #542f1a;
+}
+
+.modal__submit-button:disabled {
+  color: #ffffff;
   background-color: #c7bbb5;
 }

@@ -17,12 +17,7 @@ function PostPage() {
 
   return (
     <>
-      <PostHeader
-        {...data}
-        onClick_Link={copyLink}
-        onClick_Kakao={shareKakao}
-        onClick_Facebook={shareFacebook}
-      />
+      <PostHeader {...data} />
       {isToast && <div className="toast-msg">URL이 복사되었습니다!</div>}
       <NoQuestion />
       <QuestionButton />

@@ -26,8 +26,7 @@ function PostHeader({
     <div id="postpage-header">
       <img className="post-header" src={OpenMindHeader} alt="OpenMind 헤더" />
 
-      {/* 이 컨테이너가 중앙 정렬의 기준점이 됩니다 */}
-      <div className="post-content-container">
+      <div className="post-content">
         <img className="post-logo" src={OpenMindLogo} alt="OpenMind 로고" />
         <img className="post-profile" src={profile} alt="OpenMind 프로필" />
         <p className="post-name">{name}</p>

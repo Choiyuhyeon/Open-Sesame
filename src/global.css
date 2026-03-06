@@ -12,7 +12,6 @@
   --Grayscale-10: #ffffff;
 
   /* Primary color */
-  --blue: #3692ff;
   --Brown-50: #341909;
   --Brown-40: #542f1a;
   --Brown-30: #c7bbb5;
@@ -85,6 +84,10 @@ button {
 img,
 svg {
   vertical-align: bottom;
+}
+
+html {
+  font-size: 16px;
 }
 
 body {

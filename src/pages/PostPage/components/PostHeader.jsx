@@ -9,11 +9,9 @@ import { useState, useEffect } from 'react';
 /* 코드 구조가 반복되어 ShareButton 추가 */
 function ShareButton({ className, icon, alt, onClick }) {
   return (
-    <>
-      <button className={className} onClick={onClick}>
-        <img src={icon} alt={alt} />
-      </button>
-    </>
+    <button className={className} onClick={onClick}>
+      <img src={icon} alt={alt} />
+    </button>
   );
 }
 
@@ -25,9 +23,11 @@ function PostHeader({
   onClick_Facebook,
 }) {
   return (
-    <>
-      <div id="postpage-header">
-        <img className="post-header" src={OpenMindHeader} alt="OpenMind 헤더" />
+    <div id="postpage-header">
+      <img className="post-header" src={OpenMindHeader} alt="OpenMind 헤더" />
+
+      {/* 이 컨테이너가 중앙 정렬의 기준점이 됩니다 */}
+      <div className="post-content-container">
         <img className="post-logo" src={OpenMindLogo} alt="OpenMind 로고" />
         <img className="post-profile" src={profile} alt="OpenMind 프로필" />
         <p className="post-name">{name}</p>
@@ -52,7 +52,7 @@ function PostHeader({
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

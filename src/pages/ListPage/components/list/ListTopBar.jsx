@@ -1,5 +1,5 @@
-import Logo from '../../../../assets/images/logo.svg'; // 로고 이미지 import
-import ReplyButton from '../../../../assets/images/Reply.svg'; // 로고 이미지 import
+import Logo from '@/assets/images/logo.svg'; // 로고 이미지 import
+import ReplyButton from '@/assets/images/Reply.svg'; // 로고 이미지 import
 import { Link, NavLink } from 'react-router-dom'; // 페이지 이동용 컴포넌트
 import './ListTopBar.css';
 

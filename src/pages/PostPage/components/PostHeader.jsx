@@ -1,10 +1,10 @@
-import '../components/PostHeader.css';
-import OpenMindHeader from '../../../assets/images/OpenMindHeader.png';
-import OpenMindLogo from '../../../assets/images/OpenMindLogo.svg';
-import LinkVector from '../../../assets/images/Link.svg';
-import KakaoVector from '../../../assets/images/Kakaotalk.svg';
-import FacebackVector from '../../../assets/images/Facebook.svg';
 import { useState, useEffect } from 'react';
+import '../components/PostHeader.css';
+import OpenMindHeader from '@/assets/images/OpenMindHeader.png';
+import OpenMindLogo from '@/assets/images/OpenMindLogo.svg';
+import LinkVector from '@/assets/images/Link.svg';
+import KakaoVector from '@/assets/images/Kakaotalk.svg';
+import FacebackVector from '@/assets/images/Facebook.svg';
 
 /* 코드 구조가 반복되어 ShareButton 추가 */
 function ShareButton({ className, icon, alt, onClick }) {

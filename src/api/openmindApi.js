@@ -1,4 +1,4 @@
-import axios from '../utils/axios'
+import axios from '@/utils/axios'
 
 // 질문 대상(Subject) 목록 조회 API
 // limit : 한 번에 가져올 데이터 개수

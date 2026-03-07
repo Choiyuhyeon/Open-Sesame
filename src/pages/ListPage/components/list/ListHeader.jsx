@@ -1,4 +1,4 @@
-import SortDropdown from '../../sortdropdown/SortDropdown'
+import SortDropdown from '@/pages/ListPage/sortdropdown/SortDropdown'
 import './ListHeader.css'
 
 function ListHeader({ title, sort, options, onChangeSort }) {

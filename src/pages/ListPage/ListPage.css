@@ -1,0 +1,108 @@
+/* 전체 */
+.list-page {
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.list-state {
+  text-align: center;
+  padding: 24px 0;
+}
+
+.list-state.error {
+  color: #d14343;
+}
+
+/* 상단 바 */
+.list-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.logo-btn {
+  border: 0;
+  background: transparent;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* 헤더 - 모바일 기본 */
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  gap: 12px;
+  padding: 24px 0;
+  position: relative;
+}
+
+.list-title {
+  font-size: 24px;
+}
+
+.sort-dropdown {
+  position: static;
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+/* 페이지네이션 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding-top: 12px;
+}
+
+.page-btn {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.page-btn.active {
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* Tablet 이상 (768px~) */
+@media (min-width: 768px) {
+  .list-page {
+    padding: 40px 34px;
+  }
+
+  .list-header {
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .list-title {
+    font-size: 32px;
+  }
+}
+
+/* Desktop (940px~) */
+@media (min-width: 940px) {
+  .list-page {
+    width: 940px;
+  }
+  .list-header {
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+  }
+}

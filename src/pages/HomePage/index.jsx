@@ -1,8 +1,8 @@
 import './HomePage.css';
+import papercupimg from '@/assets/images/papercupimg.png';
 import GoQuestionButton from './components/GoQuestionButton/GoQuestionButton';
 import LogoBotton from './components/LogoBotton/LogoBotton';
 import QuestionForm from './components/QuestionForm/QuestionForm';
-import papercupimg from '../../assets/images/papercupimg.png';
 
 function HomePage() {
   return (

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { getSubjects } from '../../api/openmindApi';
+import { getSubjects } from '@/api/openmindApi';
 
 import ListTopBar from './components/list/ListTopBar';
 import ListHeader from './components/list/ListHeader';

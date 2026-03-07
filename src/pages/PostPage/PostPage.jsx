@@ -1,10 +1,10 @@
+import { useState, useEffect } from 'react';
+import { useShare } from '@/hooks/useShare';
 import '../PostPage/PostPage.css';
+import Profile from '@/assets/images/Profile.svg';
 import PostHeader from './components/PostHeader';
 import NoQuestion from './components/NoQuestion';
 import QuestionButton from './components/QuestionButton';
-import Profile from '../../assets/images/Profile.svg';
-import { useState, useEffect } from 'react';
-import { useShare } from '../../hooks/useShare';
 
 function PostPage() {
   const [data, setData] = useState({

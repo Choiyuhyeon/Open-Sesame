@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './FeedCardAnswer.css';
+import './FeedCardAnswer.module.css';
 import defaultCatImage from '@/assets/images/img-profile-cat.png';
 import thumbsUp from '@/assets/icons/icon-thumbs-up.svg';
 import thumbsDown from '@/assets/icons/icon-thumbs-down.svg';

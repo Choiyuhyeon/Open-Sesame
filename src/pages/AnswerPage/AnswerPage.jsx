@@ -1,9 +1,10 @@
 import FeedCardAnswer from './components/FeedCardAnswer.jsx';
+import QuestionContainer from './components/QuestionContainer.jsx';
 
 function AnswerPage() {
   return (
     <>
-      <FeedCardAnswer />
+      <QuestionContainer />
     </>
   );
 }

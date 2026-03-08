@@ -1,0 +1,84 @@
+#question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 327px;
+  margin: 150px auto;
+  gap: 16px;
+}
+
+.container-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.questionIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.questionState-text {
+  color: var(--Brown-40, #542f1a);
+  font-family: Actor, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+/* 리스트 및 빈 화면을 담는 영역 */
+.content-area {
+  width: 100%;
+}
+
+/* 질문이 있을 때: 카드 사이 간격 조절 */
+.question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* 카드와 카드 사이의 수직 간격 */
+  width: 100%;
+}
+
+/* 질문이 없을 때: 기존 mailbox 박스 스타일 유지 */
+.empty-mailbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 330px; /* 비어있을 때 적절한 높이 */
+  border-radius: 16px;
+  border: 1px solid var(--Brown-20, #e4d5c9);
+  background: var(--Brown-10, #f5f1ee);
+}
+
+.inboxIcon {
+  width: 114px;
+  height: 118px;
+}
+
+/* 반응형 설정 */
+@media (min-width: 768px) {
+  #question-container {
+    max-width: 704px;
+    margin-top: 200px;
+    margin-bottom: 100px;
+  }
+  .questionIcon {
+    width: 24px;
+    height: 24px;
+  }
+  .questionState-text {
+    font-size: 20px;
+  }
+  .inboxIcon {
+    width: 150px;
+    height: 154px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #question-container {
+    max-width: 716px;
+  }
+}

@@ -3,7 +3,7 @@
   min-height: 100vh;
   padding: 40px 80px;
   box-sizing: border-box;
-  background-color: #f5f5f5;
+  background-color: #F9F9F9;
   overflow: hidden;
 }
 
@@ -11,6 +11,9 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
 }
 
 .main-area {
@@ -21,12 +24,37 @@
   align-items: center;
 }
 
+.mobile-button {
+  display: none;
+}
+
 .papercup-image {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
+  height: auto;
+  object-fit: contain;
   z-index: 1;
   pointer-events: none;
+}
+
+/* 화면줄이면 버튼 위치 바뀌게 */
+@media (max-width: 600px) {
+  .top-area {
+    display: none;
+  }
+
+  .mobile-button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 16px 0;
+  }
+
+  .papercup-image {
+    width: 100%;
+    height: auto;
+  }
 }

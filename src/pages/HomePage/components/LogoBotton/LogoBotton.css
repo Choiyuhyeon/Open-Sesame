@@ -1,17 +1,15 @@
 .logo-botton {
   display: flex;
   justify-content: center;
-  margin-top: 80px;
+  margin-top: 120px;
 }
 
 .logo-link {
   display: inline-block;
-  text-decoration: none;
 }
 
 .logo-image {
-  width: 456px;
-  height: 180px;
-  object-fit: contain;
+  width: 220px;
+  height: auto;
   cursor: pointer;
 }

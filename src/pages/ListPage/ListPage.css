@@ -47,7 +47,7 @@
 
 .sort-dropdown {
   position: static;
-  font-size: 14px;
+  right: 0;
   padding: 8px 10px;
   border-radius: 10px;
 }

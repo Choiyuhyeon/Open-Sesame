@@ -5,6 +5,7 @@ import Profile from '@/assets/images/img-profile.svg';
 import PostHeader from './components/PostHeader';
 import NoQuestion from './components/NoQuestion';
 import QuestionButton from './components/QuestionButton';
+import FeedCard from './components/FeedCard';
 
 function PostPage() {
   const [data, setData] = useState({
@@ -19,8 +20,10 @@ function PostPage() {
     <>
       <PostHeader {...data} />
       {isToast && <div className="toast-msg">URL이 복사되었습니다!</div>}
+      {/* 질문이 없을때 NoQuestion컴포넌트 렌더링 */}
       <NoQuestion />
       <QuestionButton />
+      <FeedCard />
     </>
   );
 }

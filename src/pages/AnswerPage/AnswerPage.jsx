@@ -1,5 +1,11 @@
+import FeedCardAnswer from './components/FeedCardAnswer.jsx';
+
 function AnswerPage() {
-  return <div>Answer Page</div>;
+  return (
+    <>
+      <FeedCardAnswer />
+    </>
+  );
 }
 
 export default AnswerPage;

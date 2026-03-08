@@ -36,7 +36,7 @@ const FeedCardAnswer = ({
         {isAnswered ? (
           <span className="status-badge">답변 완료</span>
         ) : (
-          <span className="status0-badge">미 답변</span>
+          <span className="status0-badge">미답변</span>
         )}
       </div>
 

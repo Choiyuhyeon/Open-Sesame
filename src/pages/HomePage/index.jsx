@@ -1,4 +1,4 @@
-import './page.css';
+import './HomePage.css';
 import GoQuestionButton from './components/GoQuestionButton/GoQuestionButton';
 import LogoBotton from './components/LogoBotton/LogoBotton';
 import QuestionForm from './components/QuestionForm/QuestionForm';

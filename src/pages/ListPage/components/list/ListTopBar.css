@@ -1,8 +1,7 @@
 .headerLeft {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; 
   padding: 24px;
   max-width: 1200px;
   margin: 0 auto;
@@ -33,12 +32,18 @@
 }
 
 @media (min-width: 768px) {
-  .headerLeft {
-    flex-direction: row;
+  .globalHeader nav ul {
+    gap: 36px;
+    font-size: 18px;
+  }
+
+  .headerLogo {
+    margin-right: 35px;
   }
 }
-@media (min-width: 1200px) {
-  .headerLeft {
-    flex-direction: row;
+
+@media (min-width: 1280px) {
+  .headerLogo {
+    margin-right: 47px;
   }
 }

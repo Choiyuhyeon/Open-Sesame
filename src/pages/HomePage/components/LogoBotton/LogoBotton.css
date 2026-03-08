@@ -8,8 +8,8 @@
   display: inline-block;
 }
 
-.logo-image {
-  width: 220px;
+.logo-botton img {
+  width: 100%;
+  max-width: 520px;
   height: auto;
-  cursor: pointer;
 }

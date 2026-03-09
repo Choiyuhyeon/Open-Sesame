@@ -1,10 +1,10 @@
-import './LogoBotton.css';
 import { Link } from 'react-router-dom';
-import logoImg from '../../../../assets/images/logoimg.png';
+import logoImg from '../../../../assets/images/opensesamelogo.png';
+import './LogoButton.css';
 
-function LogoBotton() {
+function LogoButton() {
   return (
-    <div className="logo-botton">
+    <div className="logo-button">
       <Link to="/" className="logo-link">
         <img src={logoImg} alt="Open Sesame Logo" className="logo-image" />
       </Link>
@@ -12,4 +12,4 @@ function LogoBotton() {
   );
 }
 
-export default LogoBotton;
+export default LogoButton;

@@ -1,7 +1,7 @@
-import './QuestionForm.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import nameicon from '../../../../assets/images/nameicon.png';
+import './QuestionForm.css';
 
 function QuestionForm() {
   const [name, setName] = useState('');

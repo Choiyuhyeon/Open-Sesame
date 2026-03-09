@@ -1,8 +1,8 @@
-import './HomePage.css';
 import GoQuestionButton from './components/GoQuestionButton/GoQuestionButton';
-import LogoBotton from './components/LogoBotton/LogoBotton';
+import LogoButton from './components/LogoButton/LogoButton';
 import QuestionForm from './components/QuestionForm/QuestionForm';
-import papercupimg from '../../assets/images/papercupimg.png';
+import sesameCharacterImg from '../../assets/images/sasamelogo.png';
+import './HomePage.css';
 
 function HomePage() {
   return (
@@ -13,7 +13,7 @@ function HomePage() {
       </div>
 
       <div className="main-area">
-        <LogoBotton />
+        <LogoButton />
 
         {/* 모바일용: 로고 아래 버튼 */}
         <div className="mobile-button">
@@ -23,7 +23,7 @@ function HomePage() {
         <QuestionForm />
       </div>
 
-      <img src={papercupimg} alt="" className="papercup-image" />
+      <img src={sesameCharacterImg} alt="sesame character img" className="main-sesame-img" />
     </div>
   );
 }

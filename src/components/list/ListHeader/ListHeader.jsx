@@ -1,4 +1,4 @@
-import SortDropdown from '@/pages/ListPage/sortdropdown/SortDropdown'
+import Dropdown from '@/components/common/Dropdown/Dropdown'
 import './ListHeader.css'
 
 function ListHeader({ title, sort, options, onChangeSort }) {
@@ -10,7 +10,7 @@ function ListHeader({ title, sort, options, onChangeSort }) {
       {/* 정렬 드롭다운 영역 */}
       {/* 별도 div로 감싸서 제목 아래 가운데 정렬하기 쉽게 구조 분리 */}
       <div className="list-sort">
-        <SortDropdown
+        <Dropdown
           value={sort}          // 현재 선택된 정렬값
           options={options}     // 정렬 옵션 목록
           onChange={onChangeSort} // 정렬 변경 시 실행

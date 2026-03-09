@@ -5,7 +5,7 @@ import { getSubjects } from '@/api/openmindApi';
 import ListTopBar from '@/components/list/ListTopBar/ListTopBar';
 import ListHeader from '@/components/list/ListHeader/ListHeader';
 import FeedGrid from '@/components/list/FeedGrid/FeedGrid';
-import Pagination from '@/components/common/Pagination/Pagination';
+import Pagination from '@/components/list/Pagination/Pagination';
 
 import './ListPage.css';
 

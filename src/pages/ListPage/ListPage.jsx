@@ -109,7 +109,7 @@ function ListPage() {
 
       <div className="list-container">
         <ListHeader
-          title="누구에게 질문할까요?"
+          title="질문하고 싶은 참깨는 누구인가요?!"
           sort={sort}
           options={SORT_OPTIONS}
           onChangeSort={handleChangeSort}

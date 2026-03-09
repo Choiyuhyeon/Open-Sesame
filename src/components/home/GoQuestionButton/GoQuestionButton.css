@@ -1,29 +1,30 @@
-.go-question-button {
-  width: fit-content;
-  min-width: 170px;
-  height: 46px;
-  padding: 12px 24px;
-  border: 1px solid #542F1A;
-  border-radius: 8px;
-  background-color: #F5F1EE;
-  color: #542F1A;
-
+.go-questionBtn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
 
-  font-size: 16px;
+  padding: 10px 18px;
+
+  border: 1px solid #542f1a;
+  border-radius: 12px;
+
+  background-color: #f5f1ee;
+
+  font-size: 14px;
   font-weight: 500;
+  color: #542f1a;
+
   cursor: pointer;
 
-  white-space: nowrap;
-  box-sizing: border-box;
-  text-decoration: none;
-  flex: none;
+  transition: all 0.2s ease;
 }
 
-.go-question-button:hover {
-  border-color: #3A1F12;
-  box-shadow: 0 0 0 1px #3A1F12;
+.go-questionBtn::after {
+  content: '→';
+  font-size: 16px;
+}
+
+.go-questionBtn:hover {
+  background: #542f1a;
+  color: white;
 }

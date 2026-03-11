@@ -26,10 +26,7 @@
 }
 
 .modal__title {
-  color: var(--color-text-primary);
   font-size: var(--font-size-20);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-25);
 }
 
 .modal__user-info {
@@ -37,7 +34,6 @@
   display: flex;
   gap: 4px;
   align-items: center;
-  color: var(--color-text-secondary);
   font-size: var(--font-size-16);
 }
 
@@ -54,11 +50,11 @@
 .modal__file-button {
   margin-top: 8px;
   width: 100%;
-  height: 52px;
+  padding: 12px;
   border-radius: 12px;
   background-color: var(--gray-50);
   color: var(--gray-600);
-  font-size: var(--font-size-16);
+  font-size: var(--font-size-14);
   font-weight: var(--font-weight-regular);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -123,14 +119,13 @@
 /* 제출 버튼 */
 .modal__submit-button {
   margin-top: 8px;
-  padding: 12px;
+  padding: 16px;
   width: 100%;
   border-radius: 8px;
   border: none;
   background-color: var(--color-primary);
   color: var(--white);
   font-size: var(--font-size-16);
-  font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }

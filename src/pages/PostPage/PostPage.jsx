@@ -34,6 +34,8 @@ function PostPage() {
           linkIcon={copyLink}
           kakaoIcon={shareKakao}
           facebookIcon={shareFacebook}
+          onClickEditName={() => setIsEditModalOpen(true)}
+          onClickDelete={() => setIsDeleteModalOpen(true)}
         />
         {renderToast && (
           <div className={`toast-msg ${showToast ? 'toast-in' : 'toast-out'}`}>

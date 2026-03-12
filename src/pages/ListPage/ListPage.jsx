@@ -47,7 +47,7 @@ function ListPage() {
     // 정렬이 바뀌면 1페이지부터 다시
     setSearchParams({ page: '1', sort: nextSort });
   };
-  
+
   const handleChangePage = (nextPage) => {
     setSearchParams({ page: String(nextPage), sort });
   };
@@ -82,16 +82,25 @@ function ListPage() {
         // API 호출 (openmindApi.js의 getSubjects 사용)
         // 실제 요청 URL 예: /subjects/?limit=8&offset=0&sort=time
         const data = await getSubjects({ limit, offset, sort });
+        console.log('subjects 응답 전체:', data);
 
         // API 응답 구조: { count: 전체 개수, results: 현재 페이지 데이터, next, previous }
         const list = data.results ?? []; // results가 없을 때를 대비해 빈 배열
         const count = data.count ?? list.length; // count가 없으면 list 길이로 대체
 
+        // 테스트용 코드
+        // id가 13350인 subject만 questionCount를 5로 바꿔서
+        // 화면에 "받은 질문 5개"가 잘 보이는지 확인
+        const testList = list.map((item) =>
+          item.id === 13350 ? { ...item, questionCount: 5 } : item
+        );
+
         // 언마운트된 상태면 여기서 중단 (setState 방지)
         if (!alive) return;
 
-        // 화면에 뿌릴 목록 세팅
-        setSubjects(list);
+        // 화면에 뿌릴 목록 세팅 
+        // 실제 화면에는 원본 list 대신 testList를 넣음
+        setSubjects(testList);
 
         // 총 페이지 수 계산
         // count=전체 데이터 개수, limit=한 페이지에 보여줄 개수

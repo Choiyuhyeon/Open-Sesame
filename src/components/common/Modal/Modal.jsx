@@ -5,8 +5,9 @@ import MessagesIcon from '@/assets/icons/icon-messages.svg';
 import DefaultImg from '@/assets/images/img-profile-default.svg';
 import InputTextArea from '@/components/common/InputTextArea/InputTextArea';
 import { useFileUpload } from '@/hooks/useFileUpload';
+import { postQuestion } from '../../../api/openmindApi';
 
-export function Modal() {
+export function Modal({ subjectId = 13467 }) {
   const [message, setMessage] = useState('');
   const {
     selectedFile,
@@ -17,15 +18,20 @@ export function Modal() {
     handleRemoveFile,
   } = useFileUpload();
 
-  const isSubmitDisabled = message.trim().length === 0 && selectedFile === null;
+  const isSubmitDisabled = message.trim().length === 0;
 
   const handleModalInput = (e) => {
     setMessage(e.target.value);
   };
 
   const handleSubmit = async () => {
-    setMessage('');
-    handleRemoveFile();
+    try {
+      await postQuestion(subjectId, message);
+      setMessage('');
+      handleRemoveFile();
+    } catch (error) {
+      console.error('질문 등록 실패', error);
+    }
   };
 
   return (

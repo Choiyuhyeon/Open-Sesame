@@ -3,31 +3,53 @@ import './FeedBox.css';
 import defaultCatImage from '@/assets/images/img-profile-cat.png';
 import thumbsUp from '@/assets/icons/icon-thumbs-up.svg';
 import thumbsDown from '@/assets/icons/icon-thumbs-down.svg';
-// import globalcss 나오면 적용~
+import { createAnswer } from '@/api/openmindApi';
 
-// api연동 전 단계이므로 목데이터 미리 삽입
-const FeedBox = ({
-  question = '좋아하는 동물은 무엇인가유?',
-  user = { nickname: '아초는고냥이', profileImage: '' },
-  content = '그들을 불러 귀는 이상의 오직 피고, 가슴이 이상, 못할 봄바람이다. 찾아다녀도, 전인 방황하였으며, 대한 바이며, 이것이야말로 가치를 청춘의 따뜻한 그리하였는가? 몸이 열락의 청춘의 때문이다. 천고에 피어나는 간에 밝은 이상, 인생의 만물은 피다. 대중을 이성은 방황하여도, 그리하였는가? 크고 평화스러운 품에 방황하였으며, 말이다. 이상은 들어 예수는 크고 긴지라 역사를 피다. 얼음에 있음으로써 꽃 보배를 곧 가는 교향악이다. 우는 새 예가 우리의 것은 피다. 피가 그것을 어디 앞이 기쁘며, 이상의 열락의 위하여서 끝까지 것이다. 있는 봄바람을 방황하여도, 우리의 것은 작고 아니한 영원히 듣기만 운다.',
-  likeCount = 0,
-  createdAt = '1주 전',
-}) => {
-  // 프로필 이미지 대체 고양이 이미지
+const FeedBox = ({ questionData, user }) => {
+  const {
+    id: questionId,
+    content: questionContent = '질문 내용이 없습니다.',
+    likeCount = 0,
+    createdAt = '',
+    answer = null,
+  } = questionData || {};
+
   const defaultProfile = defaultCatImage;
 
-  // --- 추가된 로직 시작 ---
-  const [answerText, setAnswerText] = useState('');
-  const [isAnswered, setIsAnswered] = useState(false); // 답변 완료 여부
+  // --- 상태 관리 ---
+  const [answerText, setAnswerText] = useState(answer?.content || '');
+  const [isAnswered, setIsAnswered] = useState(answer !== null); // answer 객체 있는지 여부
+  const [isRejected, setIsRejected] = useState(answer?.isRejected || false);
 
   const isButtonActive = answerText.trim().length > 0;
 
-  const handleAnswerSubmit = () => {
-    if (isButtonActive) {
-      console.log('제출된 답변:', answerText);
-      setIsAnswered(true); // 제출 시 화면 전환 테스트용
+  const handleAnswerSubmit = async () => {
+    if (isButtonActive && !isAnswered) {
+      if (!questionId) return; 
+      // 답변등록 관련 오류 처리
+      try {
+        const result = await createAnswer(questionId, {
+          content: answerText,
+          isRejected: false
+        });
+        setIsAnswered(true);
+      } catch (error) {
+        console.error('답변 등록 실패:', error);
+        alert('답변을 등록하는 중 문제가 발생했습니다.');
+      }
     }
   };
+
+  // 날짜 포맷 (예: 2023-11-01T02:24:43Z -> 2023.11.01)
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    if (isNaN(date)) return dateString;
+    return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+  };
+
+  const formattedDate = formatDate(createdAt);
+  const answerFormattedDate = formatDate(answer?.createdAt);
 
   return (
     <div className="feed-box">
@@ -42,15 +64,15 @@ const FeedBox = ({
 
       {/* 질문 영역 */}
       <div className="question-section">
-        <div className="meta-info">질문 · {createdAt}</div>
-        <h2 className="question-text">{question}</h2>
+        <div className="meta-info">질문 · {formattedDate}</div>
+        <h2 className="question-text">{questionContent}</h2>
       </div>
 
       {/* 답변 영역 */}
       <div className="answer-section">
         <div className="profile-container">
           <img
-            src={user?.profileImage || defaultProfile}
+            src={user?.imageSource || user?.profileImage || defaultProfile}
             alt="profile"
             className="profile-img"
           />
@@ -58,14 +80,14 @@ const FeedBox = ({
 
         <div className="content-container">
           <div className="user-info">
-            <span className="nickname">{user?.nickname || '익명'}</span>
-            <span className="date">{createdAt}</span>
+            <span className="nickname">{user?.name || user?.nickname || '익명'}</span>
+            <span className="date">{isAnswered ? answerFormattedDate : formattedDate}</span>
           </div>
 
-          {/* 답변를 쓸 textarea또는 답변이 들어갈 자리*/}
-          {/* <p className="answer-content">{content}</p> */}
           {isAnswered ? (
-            <p className="answer-content">{answerText || content}</p>
+            <p className="answer-content">
+               {isRejected ? <span className="rejected-text">답변 거절</span> : answerText}
+            </p>
           ) : (
             <div className="answer-input-wrapper">
               <textarea
@@ -86,7 +108,7 @@ const FeedBox = ({
         </div>
       </div>
 
-      {/* 하단 버튼 영역: 텍스트 기반 버튼 */}
+      {/* 하단 버튼 영역 */}
       <div className="footer-section">
         <button className="btn-action btn-like">
           <img src={thumbsUp} alt="좋아요" className="btn-icon" />

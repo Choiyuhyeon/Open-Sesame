@@ -15,3 +15,23 @@ export const getSubjects = async ({ limit = 8, offset = 0, sort = 'time' }) => {
   // 실제 데이터는 res.data 안에 들어 있음
   return res.data
 }
+
+// 대상(Subject) 세부 정보 조회
+export const getSubject = async (subjectId) => {
+  const res = await axios.get(`/subjects/${subjectId}/`)
+  return res.data
+}
+
+// 대상(Subject)의 질문 목록 조회 API
+export const getQuestions = async (subjectId, { limit = 8, offset = 0 } = {}) => {
+  const res = await axios.get(`/subjects/${subjectId}/questions/`, {
+    params: { limit, offset },
+  })
+  return res.data
+}
+
+// 답변 생성 API
+export const createAnswer = async (questionId, data) => {
+  const res = await axios.post(`/questions/${questionId}/answers/`, data)
+  return res.data
+}

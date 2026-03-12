@@ -8,7 +8,7 @@ function FeedGrid({ items, onClickCard }) {
         <ProfileCard
           key={item.id} // React 리스트 렌더링 시 필요한 고유 key
           item={item}   // 카드에 표시할 데이터 전달
-          onClick={() => onClickCard(item.id)} // 카드 클릭 시 해당 id 전달
+          onClick={() => onClickCard(item)} // 카드 클릭 시 해당 id 전달
         />
       ))}
     </div>

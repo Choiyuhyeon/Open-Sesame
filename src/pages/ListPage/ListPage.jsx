@@ -88,19 +88,12 @@ function ListPage() {
         const list = data.results ?? []; // results가 없을 때를 대비해 빈 배열
         const count = data.count ?? list.length; // count가 없으면 list 길이로 대체
 
-        // 테스트용 코드
-        // id가 13350인 subject만 questionCount를 5로 바꿔서
-        // 화면에 "받은 질문 5개"가 잘 보이는지 확인
-        const testList = list.map((item) =>
-          item.id === 13350 ? { ...item, questionCount: 5 } : item
-        );
-
         // 언마운트된 상태면 여기서 중단 (setState 방지)
         if (!alive) return;
 
-        // 화면에 뿌릴 목록 세팅 
+        // 화면에 뿌릴 목록 세팅
         // 실제 화면에는 원본 list 대신 testList를 넣음
-        setSubjects(testList);
+        setSubjects(list);
 
         // 총 페이지 수 계산
         // count=전체 데이터 개수, limit=한 페이지에 보여줄 개수
@@ -109,6 +102,7 @@ function ListPage() {
       } catch (e) {
         // 요청 실패 시 사용자에게 보여줄 에러 메시지 세팅
         // (alive 체크는 위와 동일하게 안전장치)
+        console.error('목록 조회 에러:', e);
         if (!alive) return;
         setErrorMsg('목록을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
       } finally {

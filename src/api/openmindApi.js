@@ -50,3 +50,9 @@ export const postQuestion = async (subjectId, content) => {
   });
   return response.data;
 };
+
+// 질문 대상 삭제 API
+export const deleteSubject = async (subjectId) => {
+  const res = await axios.delete(`/subjects/${subjectId}/`);
+  return res.data;
+};

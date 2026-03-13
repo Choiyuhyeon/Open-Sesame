@@ -49,7 +49,6 @@ const FeedContainer = () => {
           ))
         ) : (
           <div className="empty-message-container">
-            {/* Optional empty state UI */}
           </div>
         )}
         </div>

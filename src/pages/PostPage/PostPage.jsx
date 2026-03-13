@@ -149,7 +149,7 @@ function PostPage() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

@@ -4,7 +4,7 @@ import defaultCatImage from '@/assets/images/img-profile-cat.png';
 import iconGoodSesame from '@/assets/icons/icon-good-sesame.svg';
 import iconArrowDown from '@/assets/icons/icon-arrow-down.svg';
 import iconArrowUp from '@/assets/icons/icon-arrow-up.svg';
-import { createAnswer } from '@/api/openmindApi';
+import { createAnswer, postReaction } from '@/api/openmindApi';
 
 const FeedBox = ({ questionData, user }) => {
   const {
@@ -23,11 +23,12 @@ const FeedBox = ({ questionData, user }) => {
   const [isRejected, setIsRejected] = useState(answer?.isRejected || false);
   const [isReplying, setIsReplying] = useState(false); // 답변하기 텍스트창 열림 여부
   const [localName, setLocalName] = useState('');
+  const [likes, setLikes] = useState(likeCount);
 
   const isButtonActive = answerText.trim().length > 0;
 
   useEffect(() => {
-    // localStorage에 저장된 username 가져오기 (문자열에 포함된 따옴표 제거 가능성 대비)
+    // localStorage에 저장된 username 가져오기 
     const storedName = localStorage.getItem('username');
     if (storedName) {
       setLocalName(storedName.replace(/['"]/g, ''));
@@ -49,6 +50,19 @@ const FeedBox = ({ questionData, user }) => {
         console.error('답변 등록 실패:', error);
         alert('답변을 등록하는 중 문제가 발생했습니다.');
       }
+    }
+  };
+
+  const handleLikeClick = async () => {
+    if (!questionId) return;
+    try {
+      // POST /questions/{questionId}/reaction/ 으로 type: "like" 전달
+      await postReaction(questionId, 'like');
+      // 성공하면 클라이언트 UI 상의 좋아요 수도 즉각 +1
+      setLikes((prev) => prev + 1);
+    } catch (error) {
+      console.error('좋아요(참깨 방울) 반영 실패:', error);
+      alert('좋아요를 반영하는 중 문제가 발생했습니다.');
     }
   };
 
@@ -143,9 +157,9 @@ const FeedBox = ({ questionData, user }) => {
 
       {/* 하단 버튼 영역 */}
       <div className="footer-section">
-        <button className="btn-action btn-sesame">
+        <button className="btn-action btn-sesame" onClick={handleLikeClick}>
           <img src={iconGoodSesame} alt="참깨 아이콘" className="icon-sesame" />
-          참깨 {likeCount} 방울
+          참깨 {likes} 방울
         </button>
       </div>
     </div>

@@ -43,10 +43,18 @@ export const createAnswer = async (questionId, data) => {
   return res.data;
 };
 
-/*질문 생성*/
+// 질문 생성 API
 export const postQuestion = async (subjectId, content) => {
   const response = await axios.post(`/subjects/${subjectId}/questions/`, {
     content,
+  });
+  return response.data;
+};
+
+// 리액션 생성 API (좋아요 처럼 참깨 n방울!)
+export const postReaction = async (questionId, type) => {
+  const response = await axios.post(`/questions/${questionId}/reaction/`, {
+    type,
   });
   return response.data;
 };

@@ -6,6 +6,10 @@ import PostHeader from '@/components/post/PostHeader/PostHeader';
 import NoQuestion from '@/components/post/NoQuestion/NoQuestion';
 import QuestionButton from '@/components/post/QuestionButton/QuestionButton';
 import './PostPage.css';
+import { Modal } from '@/components/common/Modal';
+import InputTextArea from '@/components/common/InputTextArea/InputTextArea';
+import { useFileUpload } from '@/hooks/useFileUpload';
+import { postQuestion } from '@/api/openmindApi';
 
 function PostPage() {
   const { id } = useParams();
@@ -15,7 +19,8 @@ function PostPage() {
   const [renderToast, setRenderToast] = useState(false);
   const { copyLink, shareKakao, shareFacebook } = useShare(setShowToast);
 
-  // 질문대상 조회 API
+  // 질문대상목록 조회 API
+
   useEffect(() => {
     if (!id) return;
     const fetchSubject = async () => {
@@ -29,7 +34,7 @@ function PostPage() {
           createdAt: subject.createdAt,
         });
       } catch (error) {
-        console.error('질문대상 조회 실패..', error);
+        console.error('질문대상 목록 조회 실패 ', error);
       }
     };
     fetchSubject();
@@ -67,15 +72,52 @@ function PostPage() {
         kakaoIcon={shareKakao}
         facebookIcon={shareFacebook}
       />
-      {renderToast && (
-        <div className={`toast-msg ${showToast ? 'toast-in' : 'toast-out'}`}>
-          URL이 복사되었습니다!
-        </div>
-      )}
+      <div className={`toast-msg ${showToast ? 'toast-in' : 'toast-out'}`}>
+        URL이 복사되었습니다!
+      </div>
       <div className="content-area">
         <NoQuestion />
         <QuestionButton />
       </div>
+
+      {isQuestionModalOpen && (
+        <div className="modal-overlay" onClick={handleCloseModal}>
+          <div onClick={(e) => e.stopPropagation()}>
+            <Modal>
+              <Modal.Header
+                title="질문을 작성하세요"
+                onClose={handleCloseModal}
+              />
+              <Modal.Avatar name={data.name || '아초는고양이'} />
+              <Modal.Body>
+                <InputTextArea
+                  className="modal__input"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="질문을 입력해주세요"
+                />
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="modal__file-input-hidden"
+                  onChange={handleFileChange}
+                />
+                <Modal.FileUpload
+                  selectedFile={selectedFile}
+                  previewUrl={previewUrl}
+                  onAttach={handleFileButtonClick}
+                  onRemove={handleRemoveFile}
+                />
+                <Modal.SubmitButton
+                  disabled={message.trim().length === 0}
+                  onClick={handleSubmit}
+                />
+              </Modal.Body>
+            </Modal>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

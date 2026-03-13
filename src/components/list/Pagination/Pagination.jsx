@@ -4,8 +4,6 @@ import RightArrow from '@/assets/icons/icon-arrow-right.svg';
 import DoubleLeftArrow from '@/assets/icons/icon-doublearrow-left.svg';
 import DoubleRightArrow from '@/assets/icons/icon-doublearrow-right.svg';
 
-
-
 function Pagination({ current, total, onChange }) {
   // 페이지가 1개면 페이지네이션을 굳이 보여줄 필요 없음
   if (total <= 1) return null;
@@ -91,8 +89,8 @@ function Pagination({ current, total, onChange }) {
       <button
         type="button"
         className="page-btn arrow"
-        disabled={current === total} // 마지막 페이지에서는 비활성화
-        onClick={() => onChange(current + 1)}
+        disabled={current === total} // 마지막 페이지면 비활성화
+        onClick={handleNextPage}
       >
         <img src={RightArrow} alt="다음 페이지" />
       </button>

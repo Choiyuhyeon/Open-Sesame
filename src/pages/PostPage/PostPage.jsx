@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useShare } from '@/hooks/useShare';
-import { getSubject, getSubjects } from '@/api/openmindApi';
+import { subjectApi, questionApi } from '@/api';
 import PostHeader from '@/components/post/PostHeader/PostHeader';
 import NoQuestion from '@/components/post/NoQuestion/NoQuestion';
 import QuestionButton from '@/components/post/QuestionButton/QuestionButton';
@@ -9,7 +9,6 @@ import './PostPage.css';
 import { Modal } from '@/components/common/Modal';
 import InputTextArea from '@/components/common/InputTextArea/InputTextArea';
 import { useFileUpload } from '@/hooks/useFileUpload';
-import { postQuestion } from '@/api/openmindApi';
 
 function PostPage() {
   const { id } = useParams();
@@ -24,7 +23,7 @@ function PostPage() {
     if (!id) return;
     const fetchSubject = async () => {
       try {
-        const subject = await getSubject(id);
+        const subject = await subjectApi.getById(id);
         setData({
           id: subject.id,
           name: subject.name,
@@ -43,7 +42,7 @@ function PostPage() {
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
-        const subjectList = await getSubjects({});
+        const subjectList = await subjectApi.getAll({});
         console.log('질문대상 목록 조회 성공! ', subjectList.results);
       } catch (error) {
         console.error('목록 데이터 조회 실패..', error);
@@ -75,7 +74,7 @@ function PostPage() {
 
   const handleSubmit = async () => {
     try {
-      await postQuestion(13467, message);
+      await questionApi.create(13467, message);
       handleCloseModal();
     } catch (error) {
       console.error('질문 등록 실패:', error);
@@ -108,7 +107,7 @@ function PostPage() {
       )}
       <div className="content-area">
         <NoQuestion />
-        <QuestionButton />
+        <QuestionButton onClick={handleOpenModal} />
       </div>
 
       {isQuestionModalOpen && (

@@ -2,14 +2,12 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useShare } from '@/hooks/useShare';
 import { getSubject, getSubjects } from '@/api/openmindApi';
-import PostHeader from '@/components/post/PostHeader/PostHeader';
 import NoQuestion from '@/components/post/NoQuestion/NoQuestion';
 import QuestionButton from '@/components/post/QuestionButton/QuestionButton';
 import './PostPage.css';
 import { Modal } from '@/components/common/Modal';
 import InputTextArea from '@/components/common/InputTextArea/InputTextArea';
-import { useFileUpload } from '@/hooks/useFileUpload';
-import { postQuestion } from '@/api/openmindApi';
+import PostHeader from '@/components/post/PostHeader/PostHeader';
 
 function PostPage() {
   const { id } = useParams();
@@ -20,7 +18,6 @@ function PostPage() {
   const { copyLink, shareKakao, shareFacebook } = useShare(setShowToast);
 
   // 질문대상목록 조회 API
-
   useEffect(() => {
     if (!id) return;
     const fetchSubject = async () => {
@@ -68,13 +65,15 @@ function PostPage() {
       <PostHeader
         name={data.name}
         profile={data.profile}
-        linkIcon={copyLink}
-        kakaoIcon={shareKakao}
-        facebookIcon={shareFacebook}
+        link={copyLink}
+        kakao={shareKakao}
+        facebook={shareFacebook}
       />
-      <div className={`toast-msg ${showToast ? 'toast-in' : 'toast-out'}`}>
-        URL이 복사되었습니다!
-      </div>
+      {renderToast && (
+        <div className={`toast-msg ${showToast ? 'toast-in' : 'toast-out'}`}>
+          URL이 복사되었습니다!
+        </div>
+      )}
       <div className="content-area">
         <NoQuestion />
         <QuestionButton />

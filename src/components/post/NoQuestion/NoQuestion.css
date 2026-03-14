@@ -1,14 +1,18 @@
-/* PC (기본 설정) */
 #mailbox {
   box-sizing: border-box;
-  width: 100%;
-  max-width: 716px;
-  min-height: 300px;
+  width: 90%;
+  max-width: 650px;
+  min-height: 330px;
+
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
+  justify-content: center;
+
   padding: 16px 24px;
+
   border-radius: 16px;
   border: 1px solid var(--Brown-20, #e4d5c9);
   background: var(--Brown-10, #f5f1ee);
@@ -16,63 +20,25 @@
 
 .header {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 8px;
-  margin: 0 auto;
   margin-bottom: 20px;
-}
-
-.questionIcon {
-  width: 24px;
-  height: 24px;
-  filter: brightness(0.3);
-}
-
-.questionState-text {
-  color: var(--Brown-40, #542f1a);
-  font-feature-settings:
-    'liga' off,
-    'clig' off;
-  font-family: Actor;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 25px;
 }
 
 .inboxIcon {
   width: 150px;
   height: 154px;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* 반응형 */
-/* 태블릿 ( 768px ~ 1199px ) */
-@media (max-width: 1199px) {
+@media (max-width: 1200px) {
   #mailbox {
     max-width: 704px;
   }
 }
 
-/* 모바일 ( ~ 767px ) */
 @media (max-width: 767px) {
   #mailbox {
-    max-width: 327px;
-  }
-  .questionIcon {
-    width: 22px;
-    height: 22px;
-  }
-  .questionState-text {
-    font-size: 18px;
-    line-height: 24px;
-  }
-  .inboxIcon {
-    width: 114px;
-    height: 118px;
+    min-width: nowrap;
+    min-height: 500px; /* 모바일에서 최소 높이 줄임 */
   }
 }

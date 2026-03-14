@@ -5,7 +5,7 @@ import KakaoVector from '@/assets/icons/icon-share-kakao.svg';
 import FacebackVector from '@/assets/icons/icon-share-facebook.svg';
 import OpenSesameBackground from '@/assets/images/img-header-openmind.png';
 import OpenSesameLogo from '@/assets/images/OpenSesame/OpenSesame_logo.svg';
-import Defaultprofile from '@/assets/images/OpenSesame/OpenSesame_profile.svg';
+import Defaultprofile from '@/assets/images/img-opensesame.png';
 
 /* ShareButton 컴포넌트 (링크, 카카오, 페이스북) */
 function ShareButton({ className, icon, alt, onClick }) {
@@ -24,11 +24,11 @@ function ShareButton({ className, icon, alt, onClick }) {
 }
 
 function PostHeader({
-  name = '나는 참깨',
+  name = '깨',
   profile = Defaultprofile,
-  linkIcon,
-  kakaoIcon,
-  facebookIcon,
+ link,
+  kakao,
+  facebook,
 }) {
   const navigate = useNavigate();
   return (
@@ -51,7 +51,7 @@ function PostHeader({
         />
         <img
           className="post-profile"
-          src={profile || Defaultprofile}
+          src={profile}
           alt="프로필"
           onClick={(e) => e.stopPropagation()}
         />
@@ -61,19 +61,19 @@ function PostHeader({
             className="post-linkBtn"
             icon={LinkVector}
             alt="링크"
-            onClick={linkIcon}
+            onClick={link}
           />
           <ShareButton
             className="post-kakaoBtn"
             icon={KakaoVector}
             alt="카카오"
-            onClick={kakaoIcon}
+            onClick={kakao}
           />
           <ShareButton
             className="post-facebookBtn"
             icon={FacebackVector}
             alt="페이스북"
-            onClick={facebookIcon}
+            onClick={facebook}
           />
         </div>
       </div>

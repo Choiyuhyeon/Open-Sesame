@@ -1,0 +1,72 @@
+.postpage-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 220px 24px 16px;
+  gap: 16px;
+  min-height: 0;
+}
+
+.toast-msg {
+  position: fixed;
+  left: 50%;
+  bottom: calc(30px + env(safe-area-inset-bottom));
+  transform: translate(-50%, 24px);
+  opacity: 0;
+  transition:
+    transform 250ms ease,
+    opacity 250ms ease;
+  z-index: 9999;
+  padding: 12px 20px;
+  min-width: 200px;
+  min-height: 10px;
+  font-size: 12px;
+  line-height: 18px;
+  border-radius: 24px;
+  background: rgba(51, 51, 51, 0.9);
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.toast-msg.toast-in {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+.toast-msg.toast-out {
+  transform: translate(-50%, 24px);
+  opacity: 0;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* 반응형 */
+/* PC ( 1200px ~ ) */
+@media (min-width: 1200px) {
+}
+
+/* 태블릿 ( 768px ~ 1199px ) */
+@media (max-width: 1199px) {
+}
+
+@media (max-width: 767px) {
+}

@@ -4,7 +4,8 @@ import defaultCatImage from '@/assets/images/img-profile-cat.png';
 import iconGoodSesame from '@/assets/icons/icon-good-sesame.svg';
 import iconArrowDown from '@/assets/icons/icon-arrow-down.svg';
 import iconArrowUp from '@/assets/icons/icon-arrow-up.svg';
-import { createAnswer } from '@/api/openmindApi';
+import { answerApi } from '@/api';
+import EditDropdown from '@/components/answer/EditDropdown/EditDropdown';
 
 const FeedBox = ({ questionData, user }) => {
   const {
@@ -36,12 +37,12 @@ const FeedBox = ({ questionData, user }) => {
 
   const handleAnswerSubmit = async () => {
     if (isButtonActive && !isAnswered) {
-      if (!questionId) return; 
+      if (!questionId) return;
       // 답변등록 관련 오류 처리
       try {
-        const result = await createAnswer(questionId, {
+        const result = await answerApi.create(questionId, {
           content: answerText,
-          isRejected: false
+          isRejected: false,
         });
         setIsAnswered(true);
         setIsReplying(false); // 제출 후 텍스트 영역 닫기
@@ -74,12 +75,23 @@ const FeedBox = ({ questionData, user }) => {
     <div className="feed-box">
       {/* 최상단: 상태 배지 */}
       <div className="badge-container">
-        {isAnswered ? (
-          <span className="status-badge">답변 완료</span>
-        ) : (
-          <span className="status0-badge">미답변</span>
-        )}
-      </div>
+  {isAnswered ? (
+    <span className="status-badge">답변 완료</span>
+  ) : (
+    <span className="status0-badge">미답변</span>
+  )}
+
+  {isAnswered && (
+    <EditDropdown
+      onEdit={() => {
+        setIsReplying(true);
+      }}
+      onDelete={() => {
+        alert('삭제 기능 연결 예정');
+      }}
+    />
+  )}
+</div>
 
       {/* 질문 영역 */}
       <div className="question-section">
@@ -101,42 +113,55 @@ const FeedBox = ({ questionData, user }) => {
           <div className="content-container">
             <div className="user-info">
               <span className="nickname">{subjectName}</span>
-              <span className="date">{isAnswered ? answerFormattedDate : formattedDate}</span>
-              
+              <span className="date">
+                {isAnswered ? answerFormattedDate : formattedDate}
+              </span>
+
               {/* [답변하기] 토글: 아직 답변이 안달렸고 현재 사용자의 Subject일 때만 표시 */}
               {!isAnswered && isMySubject && (
-                <button className="btn-reply-toggle" onClick={handleToggleReply}>
+                <button
+                  className="btn-reply-toggle"
+                  onClick={handleToggleReply}
+                >
                   {isReplying ? '닫기' : '답변하기'}
-                  <img src={isReplying ? iconArrowUp : iconArrowDown} alt="토글 아이콘" className="reply-toggle-icon" />
+                  <img
+                    src={isReplying ? iconArrowUp : iconArrowDown}
+                    alt="토글 아이콘"
+                    className="reply-toggle-icon"
+                  />
                 </button>
               )}
             </div>
 
             {isAnswered ? (
               <p className="answer-content">
-                 {isRejected ? <span className="rejected-text">답변 거절</span> : answerText}
+                {isRejected ? (
+                  <span className="rejected-text">답변 거절</span>
+                ) : (
+                  answerText
+                )}
               </p>
-            ) : (
-              isMySubject ? ( // isReplying 토글에 맞춰 CSS transition 적용
-                <div className={`answer-input-container ${isReplying ? 'open' : ''}`}>
-                  <div className="answer-input-wrapper">
-                    <textarea
-                      className="answer-textarea"
-                      placeholder="답변을 입력해주세요"
-                      value={answerText}
-                      onChange={(e) => setAnswerText(e.target.value)}
-                    />
-                    <button
-                      className={`btn-submit ${isButtonActive ? 'active' : 'disabled'}`}
-                      disabled={!isButtonActive}
-                      onClick={handleAnswerSubmit}
-                    >
-                      답변 완료
-                    </button>
-                  </div>
+            ) : isMySubject ? ( // isReplying 토글에 맞춰 CSS transition 적용
+              <div
+                className={`answer-input-container ${isReplying ? 'open' : ''}`}
+              >
+                <div className="answer-input-wrapper">
+                  <textarea
+                    className="answer-textarea"
+                    placeholder="답변을 입력해주세요"
+                    value={answerText}
+                    onChange={(e) => setAnswerText(e.target.value)}
+                  />
+                  <button
+                    className={`btn-submit ${isButtonActive ? 'active' : 'disabled'}`}
+                    disabled={!isButtonActive}
+                    onClick={handleAnswerSubmit}
+                  >
+                    답변 완료
+                  </button>
                 </div>
-              ) : null
-            )}
+              </div>
+            ) : null}
           </div>
         </div>
       )}

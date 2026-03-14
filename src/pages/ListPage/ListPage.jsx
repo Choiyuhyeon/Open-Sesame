@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { getSubjects } from '@/api/openmindApi';
+import { subjectApi } from '@/api';
 
 import ListTopBar from '@/components/list/ListTopBar/ListTopBar';
 import ListHeader from '@/components/list/ListHeader/ListHeader';
@@ -81,7 +81,7 @@ function ListPage() {
 
         // API 호출 (openmindApi.js의 getSubjects 사용)
         // 실제 요청 URL 예: /subjects/?limit=8&offset=0&sort=time
-        const data = await getSubjects({ limit, offset, sort });
+        const data = await subjectApi.getAll({ limit, offset, sort });
 
         // API 응답 구조: { count: 전체 개수, results: 현재 페이지 데이터, next, previous }
         const list = data.results ?? []; // results가 없을 때를 대비해 빈 배열
